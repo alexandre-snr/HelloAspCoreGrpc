@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option csharp_namespace = "HelloGrpc";
+
+package greet;
+
+import "google/protobuf/timestamp.proto";
+
+service Greeter {
+  rpc AddItem (AddItemRequest) returns (AddItemResponse);
+  rpc GetItems (GetItemsRequest) returns (GetItemsResponse);
+}
+
+message AddItemRequest {
+	string text = 1;
+	bool completed = 2;
+}
+
+message AddItemResponse {
+}
+
+message GetItemsRequest {
+}
+
+message GetItemsResponse {
+	message Item {
+		string text = 1;
+		bool completed = 2;
+		google.protobuf.Timestamp creation = 3;
+	}
+
+	repeated Item items = 1;
+}
